@@ -104,7 +104,7 @@ public class Field {
 
             char point = this.field[x][y];
             switch (point) {
-                case 'O':
+                case 'O' -> {
                     this.field[x][y] = 'X';
                     if (checkIsSank(x, y, false)) {
                         this.remainingShips--;
@@ -116,17 +116,13 @@ public class Field {
                     } else {
                         System.out.println("\nYou hit a ship!\n");
                     }
-                    break;
-                case 'X':
-                    System.out.println("\nYou hit a ship!\n");
-                    break;
-                case '~':
-                case 'M':
+                }
+                case 'X' -> System.out.println("\nYou hit a ship!\n");
+                case '~', 'M' -> {
                     this.field[x][y] = 'M';
                     System.out.println("\nYou missed!\n");
-                    break;
-                default:
-                    throw new BattleShipException("\nError! Incorrect cell value! Try again:\n");
+                }
+                default -> throw new BattleShipException("\nError! Incorrect cell value! Try again:\n");
             }
         } catch (BattleShipException e) {
             System.out.println(e.getMessage());
